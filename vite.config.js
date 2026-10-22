@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 
 const root = dirname(fileURLToPath(import.meta.url));
 
-// Template Vanilla: sem React, Vue ou Angular.
 export default defineConfig({
   base: './',
   build: {
