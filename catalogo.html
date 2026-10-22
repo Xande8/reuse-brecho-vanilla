@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff9f4">
+  <meta name="description" content="Explore as roupas disponíveis no catálogo ReUse Brechó.">
+  <title>Catálogo | ReUse Brechó</title>
+  <link rel="icon" href="./assets/logo.png">
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Navegação principal">
+      <a class="brand" href="./index.html" aria-label="ReUse Brechó — página inicial"><img src="./assets/logo.png" alt="" width="46" height="46"><span>ReUse <small>BRECHÓ</small></span></a>
+      <div class="nav-links"><a href="./index.html">Início</a><a href="./catalogo.html" aria-current="page">Peças</a></div>
+      <div class="nav-controls">
+        <button class="icon-control" type="button" id="favoriteToggle" aria-label="Mostrar apenas favoritos" aria-pressed="false">♡ <span id="favoriteCount">0</span></button>
+        <button class="cart-control" type="button" id="openCart">Sacola <span id="cartCount">0</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="catalog-hero">
+      <div><p class="kicker">REUSE BRECHÓ</p><h1>Catálogo de peças</h1><p>Encontre peças por categoria, tamanho ou nome.</p></div>
+    </section>
+    <section class="catalog-body" aria-label="Catálogo de produtos">
+      <aside class="filter-sidebar">
+        <div class="aside-heading"><h2>Filtros</h2><button type="button" id="clearFilters" class="inline-link">Limpar</button></div>
+        <label class="filter-label" for="searchInput">Buscar</label>
+        <input type="search" id="searchInput" placeholder="Nome, cor ou marca" maxlength="80" autocomplete="off">
+        <label class="filter-label" for="categorySelect">Categoria</label>
+        <select id="categorySelect"><option value="">Todas</option></select>
+        <label class="filter-label" for="sizeSelect">Tamanho</label>
+        <select id="sizeSelect"><option value="">Todos</option></select>
+        
+      </aside>
+      <div class="catalog-content">
+        <div class="catalog-toolbar"><p id="resultCount" role="status">Carregando...</p><label for="sortSelect">Ordenar por <select id="sortSelect"><option value="recent">Mais recentes</option><option value="priceAsc">Menor preço</option><option value="priceDesc">Maior preço</option><option value="name">Nome A–Z</option></select></label></div>
+        <div id="productGrid" class="product-grid catalog-grid"></div>
+        <div id="emptyState" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-upper"><div class="footer-brand"><img src="./assets/logo.png" alt="" width="42" height="42"><strong>ReUse Brechó</strong><p>João Pessoa, PB</p></div><nav aria-label="Links do rodapé"><a href="./index.html">Início</a></nav></div>
+    <div class="container footer-bottom">© 2026 ReUse Brechó <span>Imagens ilustrativas · versão de demonstração</span></div>
+  </footer>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+    <div class="drawer-heading"><div><p class="kicker">REUSE BRECHÓ</p><h2 id="cartTitle">Sua sacola</h2></div><button type="button" class="close-icon" id="closeCart" aria-label="Fechar sacola">×</button></div>
+    <div id="cartItems" class="cart-list"></div>
+    <div class="drawer-checkout">
+      <form id="checkoutForm">
+        <label for="customerName">Nome</label><input id="customerName" name="customerName" maxlength="120" minlength="2" required placeholder="Seu nome">
+        <label for="customerPhone">WhatsApp</label><input id="customerPhone" name="customerPhone" maxlength="25" inputmode="tel" required placeholder="(83) 99999-9999">
+        <label for="paymentMethod">Forma de pagamento</label><select id="paymentMethod" name="paymentMethod"><option value="pix">PIX</option><option value="dinheiro">Dinheiro</option><option value="debito">Débito</option><option value="credito">Crédito</option></select>
+        <div class="checkout-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+        <p class="microcopy">Simulação para avaliação: o pedido é salvo apenas neste navegador. Nenhuma compra ou mensagem real será enviada.</p>
+        <button class="submit-btn" id="checkoutButton" type="submit">Registrar pedido de teste</button>
+        <p id="checkoutFeedback" class="form-feedback" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </aside>
+  <dialog id="productDialog" class="product-dialog" aria-label="Detalhes do produto"><button type="button" id="closeProductDialog" class="close-icon dialog-close" aria-label="Fechar detalhes">×</button><div id="productDialogContent"></div></dialog>
+  <script type="module" src="/src/pages/catalog.js"></script>
+</body>
+</html>

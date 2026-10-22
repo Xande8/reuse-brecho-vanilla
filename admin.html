@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff9f4">
+  <title>Admin | ReUse Brechó</title>
+  <link rel="icon" href="./assets/logo.png">
+  <link rel="stylesheet" href="./src/styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-page">
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Navegação principal">
+      <a class="brand" href="./index.html" aria-label="ReUse Brechó — início"><img src="./assets/logo.png" alt="" width="46" height="46"><span>ReUse <small>BRECHÓ</small></span></a>
+      <div class="nav-links"><span class="admin-location">Área administrativa · demonstração</span></div>
+      <a class="nav-cta" href="./catalogo.html">Voltar à loja <span aria-hidden="true">→</span></a>
+    </nav>
+  </header>
+
+  <main class="container admin-layout">
+    <div class="admin-title"><div><p class="kicker">REUSE BRECHÓ</p><h1>Gerenciamento de peças</h1><p>Cadastre, edite e organize os produtos da vitrine.</p></div><button type="button" class="pill-btn outline" id="resetDemo">Restaurar exemplos</button></div>
+    <div class="admin-notice" role="note">Área de demonstração para a disciplina. Não possui login e não altera o Supabase da loja.</div>
+
+    <section class="stats-grid" aria-label="Resumo"><article><span>Peças disponíveis</span><strong id="statAvailable">—</strong></article><article><span>Produtos cadastrados</span><strong id="statProducts">—</strong></article><article><span>Pedidos de teste</span><strong id="statOrders">—</strong></article><article><span>Total dos pedidos</span><strong id="statRevenue">—</strong></article></section>
+
+    <div class="admin-tabs" role="tablist" aria-label="Gerenciamento"><button class="admin-tab active" data-tab="pecas" type="button" role="tab" aria-selected="true">Produtos</button><button class="admin-tab" data-tab="cadastro" type="button" role="tab" aria-selected="false">Cadastrar / editar</button><button class="admin-tab" data-tab="pedidos" type="button" role="tab" aria-selected="false">Pedidos</button></div>
+
+    <section id="panel-pecas" class="admin-panel active" role="tabpanel"><div class="panel-top"><div><h2>Produtos cadastrados</h2><p>Lista de peças salvas no navegador.</p></div><button class="submit-btn short" type="button" id="newProduct">+ Cadastrar peça</button></div><div id="adminProductList" class="admin-product-list"></div></section>
+
+    <section id="panel-cadastro" class="admin-panel" role="tabpanel"><div class="panel-top"><div><h2 id="formTitle">Cadastrar nova peça</h2><p>Preencha os dados da peça e salve.</p></div></div>
+      <form id="productForm" class="product-form"><input type="hidden" name="id" id="productId">
+        <div class="form-grid">
+          <div class="full"><label for="name">Nome da peça *</label><input name="name" id="name" required maxlength="120" minlength="2" placeholder="Ex.: Vestido midi florido"></div>
+          <div><label for="category">Categoria *</label><select name="category" id="category" required></select></div>
+          <div><label for="price">Preço (R$) *</label><input name="price" id="price" type="number" min="0.01" max="99999" step="0.01" required placeholder="49.90"></div>
+          <div><label for="size">Tamanho *</label><input name="size" id="size" maxlength="30" required placeholder="P, M, G, 38..."></div>
+          <div><label for="stock">Estoque *</label><input name="stock" id="stock" type="number" min="0" max="1000" step="1" required value="1"></div>
+          <div><label for="brand">Marca</label><input name="brand" id="brand" maxlength="80" placeholder="Opcional"></div>
+          <div><label for="color">Cor</label><input name="color" id="color" maxlength="60" placeholder="Ex.: Azul"></div>
+          <div><label for="state">Conservação</label><input name="state" id="state" maxlength="80" placeholder="Ex.: Bom estado"></div>
+          <div><label for="material">Material</label><input name="material" id="material" maxlength="80" placeholder="Ex.: Algodão"></div>
+          <div class="full"><label for="description">Descrição</label><textarea name="description" id="description" rows="4" maxlength="1500" placeholder="Observações sobre a peça..."></textarea></div>
+          <div class="full"><label for="imageUpload">Foto (opcional, até 350 KB)</label><input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp"><p class="form-help">Para armazenar a imagem no LocalStorage, utilize JPG, PNG ou WebP com até 350 KB.</p><div id="currentPhoto" class="photo-preview"></div></div>
+          <div class="full"><label for="productStatus">Status</label><select name="status" id="productStatus"><option value="disponivel">Disponível</option><option value="indisponivel">Indisponível</option><option value="reservado">Reservado</option><option value="vendido">Vendido</option></select></div>
+        </div>
+        <div class="form-actions"><button type="submit" class="submit-btn short" id="saveProduct">Salvar peça</button><button type="button" class="pill-btn outline" id="clearForm">Limpar</button></div><p class="form-feedback" id="productFeedback" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="panel-pedidos" class="admin-panel" role="tabpanel"><div class="panel-top"><div><h2>Pedidos de teste</h2><p>Pedidos gerados pelo catálogo. O cancelamento devolve as quantidades ao estoque.</p></div></div><div id="adminOrderList"></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-bottom">© 2026 ReUse Brechó <span>Versão Vanilla — dados locais</span></div></footer>
+  <script type="module" src="/src/pages/admin.js"></script>
+</body>
+</html>
